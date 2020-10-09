@@ -1376,6 +1376,19 @@ namespace Yarhl.UnitTests.IO
         }
 
         [Test]
+        public void WriteToWhenLengthZero()
+        {
+            string tempFile = Path.Combine(
+                Path.GetTempPath(),
+                Path.GetRandomFileName(),
+                Path.GetRandomFileName());
+
+            DataStream stream1 = new DataStream();
+            stream1.WriteTo(tempFile);
+            Assert.AreEqual(0, new FileStream(tempFile, FileMode.Open).Length);
+        }
+
+        [Test]
         public void WriteToAfterDispose()
         {
             DataStream stream1 = new DataStream();

@@ -554,7 +554,7 @@ namespace Yarhl.IO
                 Directory.CreateDirectory(parentDir);
             }
 
-            using (var stream = DataStreamFactory.FromFile(fileOut, FileOpenMode.Write))
+            using (var stream = DataStreamFactory.FromStream(new FileStream(fileOut, FileMode.OpenOrCreate)))
             {
                 WriteSegmentTo(start, stream);
             }
